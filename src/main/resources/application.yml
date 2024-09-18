@@ -1,0 +1,70 @@
+server:
+  port: 16666
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name : yx
+  mvc:
+    favicon:
+      enabled: true
+  messages:
+    basename: i18n.login
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: dev #环境配置文件 dev sqlite
+
+## 静态页面配置
+  thymeleaf:
+    #热部署文件，页面不产生缓存，及时更新
+    cache: false
+    prefix: classpath:static/templates/
+    suffix: .html
+    encoding: UTF-8
+
+mybatis-plus:
+  mapperLocations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: false
+
+## pagehelper
+pagehelper:
+  helperDialect: sqlite #postgresql #mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: countSql
+  count: countSql
+  returnPageInfo: check
+
+## 记录日志
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.yuxue: DEBUG
+    org.hibernate: ERROR
+    org.hibernate.type.descriptor.sql.BasicBinder: ERROR
+    org.hibernate.type.descriptor.sql.BasicExtractor: ERROR
+    org.springframework.data.redis: ERROR
+    org.springframework: ERROR
+    org.springboot.sample: ERROR
+    org.apache: ERROR
+    io.lettuce.core: ERROR
+    com.baomidou.mybatisplus.core.MybatisConfiguration: ERROR
+    org.mybatis.spring.mapper.ClassPathMapperScanner: ERROR
+    org.mybatis.spring.SqlSessionFactoryBean: ERROR
+    net.sf.ehcache.config.ConfigurationHelper: ERROR
+    springfox.documentation.schema.property: ERROR
+    springfox.documentation.spring.web.plugins.DefaultRequestHandlerCombiner: ERROR
+    net.sf.ehcache: ERROR
+    com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean: ERROR
+
+
